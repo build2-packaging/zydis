@@ -30,8 +30,8 @@ src_pfx_src = [dir_path] $src_root/src/
 c.poptions =+ "-I$out_pfx_src" "-I$src_pfx_src" \
               "-I$out_pfx_inc" "-I$src_pfx_inc"
 
-#obja{*}: c.poptions += -DZYDIS_STATIC_BUILD
-#objs{*}: c.poptions += -DZYDIS_SHARED_BUILD
+obja{*}: c.poptions += -DZYDIS_STATIC_BUILD
+objs{*}: c.poptions += -DZYDIS_SHARED_BUILD -DZYDIS_SHOULD_EXPORT
 
 # Export options.
 #
@@ -41,8 +41,8 @@ lib{zydis}:
   c.export.libs = $intf_libs
 }
 
-#liba{zydis}: c.export.poptions += -DZYDIS_STATIC
-#libs{zydis}: c.export.poptions += -DZYDIS_SHARED
+liba{zydis}: c.export.poptions += -DZYDIS_STATIC_BUILD
+libs{zydis}: c.export.poptions += -DZYDIS_SHARED
 
 # For pre-releases use the complete version to make sure they cannot
 # be used in place of another pre-release or the final version. See
